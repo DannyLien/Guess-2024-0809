@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.tom.guess.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -18,14 +20,29 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-
     }//onCreate
 
 
     fun check(view: View) {
         val n = binding.number.text.toString().toInt()
-        println("number : $n")
         Log.d(TAG, "number : ${n}")
+
+        val diff = secretNumber.validate(n)
+        var message = "Yes, you got it"
+        if (diff < 0) {
+            message = "Bigger"
+
+        } else if (diff > 0) {
+            message = "Smaller"
+
+        }
+//        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+        AlertDialog.Builder(this)
+            .setTitle("Message")
+            .setMessage(message)
+            .setPositiveButton("OK", null)
+            .show()
+
     }
 
 }//AppCompatActivity

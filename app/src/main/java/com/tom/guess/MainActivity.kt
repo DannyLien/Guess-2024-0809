@@ -28,19 +28,19 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "number : ${n}")
 
         val diff = secretNumber.validate(n)
-        var message = "Yes, you got it"
+        var message = getString(R.string.yes_you_got_it)
         if (diff < 0) {
-            message = "Bigger"
+            message = getString(R.string.bigger)
 
         } else if (diff > 0) {
-            message = "Smaller"
+            message = getString(R.string.smaller)
 
         }
 //        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
         AlertDialog.Builder(this)
-            .setTitle("Message")
+            .setTitle(getString(R.string.dialog_title))
             .setMessage(message)
-            .setPositiveButton("OK", null)
+            .setPositiveButton(getString(R.string.ok), null)
             .show()
 
     }
